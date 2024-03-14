@@ -1,0 +1,92 @@
+<%- include("../header.ejs") %>
+
+<main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Add Type</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">Home</a></li>
+          <li class="breadcrumb-item">Admin</li>
+          <li class="breadcrumb-item">Type</li>
+          <li class="breadcrumb-item active">Add Type</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-10">
+
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Add Type Details</h5>
+
+              <!-- General Form Elements -->
+              
+              <form action="/admin/type/insertType" method="post" class="form-horizontal">
+
+                <div class="row form-group my-3 ">
+                  <div class="col col-md-3 ">
+                    <label for="text-input" class="form-control-label">Select Category </label>
+                  </div>
+                  <div class="col-12 col-md-9">
+                    <select name="categoryId" id="categoryId" onchange="return getSubCatData()" class="form-control">
+                      <option value="">Please select</option>
+                      <% categories.map((v)=>{ %>
+                          <option value="<%= v.id %>"><%= v.category_name %></option>
+                      <% }) %>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="row form-group my-3 ">
+                  <div class="col col-md-3 ">
+                    <label for="text-input" class="form-control-label">Select Sub Category </label>
+                  </div>
+                  <div class="col-12 col-md-9">
+                    <select name="subCategoryId" id="subCategoryId" onchange="return getExCatData()" class="form-control">
+                      <option value="">--- Select ---</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="row form-group my-3 ">
+                    <div class="col col-md-3 ">
+                      <label for="text-input" class="form-control-label">Select Extra Category </label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                      <select name="exCategoryId" id="exCategoryId" class="form-control">
+                        <option value="">--- Select ---</option>
+                      </select>
+                    </div>
+                  </div>
+
+                <div class="row form-group my-3 ">
+                    <div class="col col-md-3">
+                        <label for="text-input" class=" form-control-label">Enter Type </label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input type="text" id="text-input" name="type_name" placeholder="Enter Type" class="form-control">
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary btn-sm">
+                        <i class="fa fa-dot-circle-o"></i> Submit
+                    </button>
+                </div>
+            </form>
+
+              <!-- End General Form Elements -->
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+<%- include("../footer.ejs") %>

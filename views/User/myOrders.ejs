@@ -1,0 +1,130 @@
+<%- include("user_header") %>
+
+
+
+    <div class="breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-inner">
+                <ul class="list-inline list-unstyled">
+                    <li><a href="/">Home</a></li>
+                    <li class='active'>My Orders</li>
+                </ul>
+            </div><!-- /.breadcrumb-inner -->
+        </div><!-- /.container -->
+    </div><!-- /.breadcrumb -->
+
+    <div class="body-content">
+        <div class="container">
+            <div class="my-wishlist-page">
+                <div class="row">
+                    <div class="col-md-12 my-wishlist">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th colspan="4" class="heading-title">My Orders</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <% for(var od of orderData){ %>
+                                        <tr>
+                                            <td class="col-md-2 col-sm-6 col-xs-6"><img
+                                                    src="<%= od.productId.pri_image %>" alt="imga"></td>
+                                            <td class="col-md-7 col-sm-6 col-xs-6">
+                                                <div class="product-name"><a href="/singleProduct/<%= od.productId.id %>"><%= od.productId.title %></a></div>
+                                                <div class="rating">
+                                                    <span class="review">06 Reviews </span>
+                                                </div>
+                                                <div class="price">
+                                                    <%= od.productId.price %>
+                                                    <span><%= od.productId.oldPrice %></span>
+                                                </div>
+                                            </td>
+                                            <td class="col-md-2 ">
+                                                <a href="/cancelOrder/<%= od.id %>" class="btn-upper btn btn-danger">Cancel</a>
+                                            </td>
+                                        </tr>
+                                    <% } %>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div><!-- /.row -->
+            </div><!-- /.sigin-in-->
+            <!-- ============================================== BRANDS CAROUSEL ============================================== -->
+            <div id="brands-carousel" class="logo-slider wow fadeInUp">
+
+                <div class="logo-slider-inner">
+                    <div id="brand-slider" class="owl-carousel brand-slider custom-carousel owl-theme">
+                        <div class="item m-t-15">
+                            <a href="#" class="image">
+                                <img data-echo="assets/images/brands/brand1.png" src="assets/images/blank.gif" alt="">
+                            </a>
+                        </div><!--/.item-->
+
+                        <div class="item m-t-10">
+                            <a href="#" class="image">
+                                <img data-echo="assets/images/brands/brand2.png" src="assets/images/blank.gif" alt="">
+                            </a>
+                        </div><!--/.item-->
+
+                        <div class="item">
+                            <a href="#" class="image">
+                                <img data-echo="assets/images/brands/brand3.png" src="assets/images/blank.gif" alt="">
+                            </a>
+                        </div><!--/.item-->
+
+                        <div class="item">
+                            <a href="#" class="image">
+                                <img data-echo="assets/images/brands/brand4.png" src="assets/images/blank.gif" alt="">
+                            </a>
+                        </div><!--/.item-->
+
+                        <div class="item">
+                            <a href="#" class="image">
+                                <img data-echo="assets/images/brands/brand5.png" src="assets/images/blank.gif" alt="">
+                            </a>
+                        </div><!--/.item-->
+
+                        <div class="item">
+                            <a href="#" class="image">
+                                <img data-echo="assets/images/brands/brand6.png" src="assets/images/blank.gif" alt="">
+                            </a>
+                        </div><!--/.item-->
+
+                        <div class="item">
+                            <a href="#" class="image">
+                                <img data-echo="assets/images/brands/brand2.png" src="assets/images/blank.gif" alt="">
+                            </a>
+                        </div><!--/.item-->
+
+                        <div class="item">
+                            <a href="#" class="image">
+                                <img data-echo="assets/images/brands/brand4.png" src="assets/images/blank.gif" alt="">
+                            </a>
+                        </div><!--/.item-->
+
+                        <div class="item">
+                            <a href="#" class="image">
+                                <img data-echo="assets/images/brands/brand1.png" src="assets/images/blank.gif" alt="">
+                            </a>
+                        </div><!--/.item-->
+
+                        <div class="item">
+                            <a href="#" class="image">
+                                <img data-echo="assets/images/brands/brand5.png" src="assets/images/blank.gif" alt="">
+                            </a>
+                        </div><!--/.item-->
+                    </div><!-- /.owl-carousel #logo-slider -->
+                </div><!-- /.logo-slider-inner -->
+
+            </div><!-- /.logo-slider -->
+            <!-- ============================================== BRANDS CAROUSEL : END ============================================== -->
+        </div><!-- /.container -->
+    </div><!-- /.body-content -->
+
+
+
+    <%- include("user_footer") %>

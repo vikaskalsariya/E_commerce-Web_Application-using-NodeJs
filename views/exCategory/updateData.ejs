@@ -1,0 +1,56 @@
+<%- include("../header.ejs") %>
+
+<main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Update Extra Category</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">Home</a></li>
+          <li class="breadcrumb-item">Admin</li>
+          <li class="breadcrumb-item">Category</li>
+          <li class="breadcrumb-item active">Update Extra Category</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-10">
+
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Edit Extra Category Details</h5>
+
+              <!-- General Form Elements -->
+              
+              <form action="/admin/extraCategory/editExCategory" method="post" class="form-horizontal">
+                <input type="hidden" name="oldId" value="<%= catData.id %>">
+                <div class="row form-group my-3 ">
+                    <div class="col col-md-3">
+                        <label for="text-input" class=" form-control-label">Enter Extra Category Name </label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input type="text" id="text-input" name="ex_category_name" value="<%= catData.ex_category_name %>" placeholder="Category name" class="form-control">
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary btn-sm">
+                        <i class="fa fa-dot-circle-o"></i> Submit
+                    </button>
+                </div>
+            </form>
+
+              <!-- End General Form Elements -->
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+<%- include("../footer.ejs") %>

@@ -1,0 +1,159 @@
+<!-- ======= Footer ======= -->
+<footer id="footer" class="footer">
+    <div class="copyright">
+      &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
+    </div>
+    <div class="credits">
+      Designed by <a href="#">BHARGAV LADUMOR</a>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/vendor/chart.js/chart.umd.js"></script>
+  <script src="/vendor/echarts/echarts.min.js"></script>
+  <script src="/vendor/quill/quill.min.js"></script>
+  <script src="/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="/vendor/tinymce/tinymce.min.js"></script>
+  <script src="/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="/js/main.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+  <!-- For Color property -->
+  <script>
+    try {
+      let colorElems = document.querySelectorAll(".colorElems");
+      let colors = document.querySelectorAll('input[name="getColorNames"]');
+
+      let count = 0;
+      for(let i = 0; i<colorElems.length; i++){
+        for(let j = 0; j<colorElems[i].children.length; j++){
+          colorElems[i].children[j].style.backgroundColor = colors[count].value;
+          count++;
+        }
+      }
+
+    } catch (error) {
+      console.log(error)
+    }
+  </script>
+
+  <!-- For Delete Multi Images -->
+  <script>
+
+    function deleteMultiImages(imgPath,proId){
+      $.ajax({
+        url : "/admin/product/deleteMultiImages",
+        method : "POST",
+        data : {
+          imgPath : imgPath,
+          proId : proId
+        },
+        success : async (res) => {
+          // $('#proId').html(res);
+          document.getElementById(proId).innerHTML = res;
+        }
+
+      })
+    }
+
+  </script>
+
+  <!-- For Dynamic Sizes -->
+  <script>
+
+    function addSizes() {      
+      try {
+  
+        let addSizeBtn = document.getElementById("addSizeBtn");
+        let sizesBox = document.getElementById("sizesBox").innerHTML;
+        sizesBox+= `<input type="text" id="text-input" name="sizes" placeholder="Enter Size" class="form-control w-50">`;
+        document.getElementById("sizesBox").innerHTML = sizesBox;
+        
+      } catch (error) {
+        
+      }
+
+    }
+
+  </script>
+
+  <!-- For Dynamic Colors -->
+  <script>
+
+    function addColors() {      
+      try {
+  
+        let addColorBtn = document.getElementById("addColorBtn");
+        let colorBox = document.getElementById("colorBox").innerHTML;
+        colorBox+= `<input type="color" name="colors" class="form-control" style="width: 100px !important;">`;
+        document.getElementById("colorBox").innerHTML = colorBox;
+        
+      } catch (error) {
+        
+      }
+
+    }
+    
+  </script>
+  
+
+<!-- For Dynamic Selection Tags -->
+  <script>
+
+    function getSubCatData(){
+
+      let categoryId = document.getElementById("categoryId").value;
+      console.log(categoryId);
+      $.ajax({
+        url : "/admin/subCategory/getSubCatData",
+        method : "POST",
+        data : {categoryId : categoryId},
+        success : async (res) => {
+          $("#subCategoryId").html(res);
+        }
+      })
+
+    }
+
+    function getExCatData(){
+
+      let subCategoryId = document.getElementById("subCategoryId").value;
+
+      $.ajax({
+        url : "/admin/extraCategory/getExCatData",
+        method : "POST",
+        data : {subCategoryId : subCategoryId},
+        success : async (res) => {
+          $("#exCategoryId").html(res);
+        }
+    })
+
+    }
+
+    function getBrandAndType(){
+
+      let exCategoryId = document.getElementById("exCategoryId").value;
+
+      $.ajax({
+        url : "/admin/brand/getBrandAndType",
+        method : "POST",
+        data : {exCategoryId : exCategoryId},
+        success : async (res) => {
+          $('#brandId').html(res[0]);
+          $('#typeId').html(res[1]);
+        }
+      })
+
+    }
+
+  </script>
+
+</body>
+
+</html>

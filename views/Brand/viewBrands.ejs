@@ -1,0 +1,111 @@
+<%- include("../header") %>
+
+<main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>All Brands</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">Home</a></li>
+          <li class="breadcrumb-item">Admin</li>
+          <li class="breadcrumb-item">Brands</li>
+          <li class="breadcrumb-item active">View Brands</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <form style="width: 300px;" class="d-flex my-4">
+        <input type="text" name="search" value="<%= search %>" class="form-control" placeholder="Search here...">
+        <input type="submit" value="Search" class="border border-0">
+    </form>
+
+
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-12">
+
+          <div class="card">
+            <div class="card-body">
+              
+                    <div class="table-responsive table-responsive-data2">
+                        <table class="table table-data2">
+                            <thead style="margin: 10px 0 !important;">
+                                <tr>
+                                    <th>Brand</th>
+                                    <th>Extra Category</th>
+                                    <th>Sub Category</th>
+                                    <th>Category </th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% if(catData != "")
+                                { for(var v of catData){ %>
+                                    <tr class="tr-shadow">
+                                        <td><%= v.brand_name %></td>
+                                        <td><%= v.exCategoryId.ex_category_name %></td>
+                                        <td><%= v.subCategoryId.sub_category_name %></td>
+                                        <td><%= v.categoryId.category_name %></td>
+                                        <td>
+                                            <% if(v.isActive == "true") { %>
+                                                <a href="/admin/brand/deactive/<%= v.id %>" class="text-success">Active</a>
+                                            <% } else { %>
+                                                <a href="/admin/brand/active/<%= v.id %>" class="text-danger">Deactive</a>
+                                            <%}%>    
+                                        </td>
+                                        <td>
+                                            <div class="table-data-feature">
+                                                <a href="/admin/brand/updateData/<%= v.id %>" class="mx-1">
+                                                    <button class="item border border-0 bg-white fs-5" data-toggle="tooltip" data-placement="top" title="Edit">
+                                                        <i class="fa-solid fa-user-pen"></i>
+                                                    </button>
+                                                </a>
+                                                <a href="/admin/brand/deleteData/<%= v.id %>" class="mx-1">
+                                                    <button class="item border border-0 bg-white fs-5" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                        <i class="fa-solid fa-trash"></i>
+                                                    </button>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <% } } else{ %>
+                                        <tr>
+                                            <td colspan="10" class="text-center">No Data Found</td>
+                                        </tr>
+                                    <% } %>
+                                    <tr class="spacer"></tr>
+                            </tbody>
+                        </table>
+                        <ul class="pagination">
+                            <% var cPage = parseInt(currentPage)+1 %>
+
+
+                            <% if(cPage>1){ %>
+                                <li class="page-item">
+                                    <a class="page-link" href="?page=<%= parseInt(currentPage)-1 %>&search=<%= search%>" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                            <% } %>
+                            <li class="page-item"><a class="page-link" href="?page=<%= currentPage %>&search=<%= search %>"><%= parseInt(currentPage)+1 %></a></li>
+                            <% if(cPage<totalPages){ %>
+                                <li class="page-item">
+                                    <a class="page-link" href="?page=<%= parseInt(currentPage)+1 %>&search=<%= search%>" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            <% } %>
+                        </ul>
+                    </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+<%- include("../footer") %>

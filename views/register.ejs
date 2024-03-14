@@ -1,0 +1,144 @@
+<%- include("header") %>
+
+<main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Add Admin</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">Home</a></li>
+          <li class="breadcrumb-item">Admin</li>
+          <li class="breadcrumb-item active">Add Admin</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-10">
+
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Add Admin</h5>
+
+              <!-- General Form Elements -->
+              
+              <form action="/admin/insertAdmin" method="post" enctype="multipart/form-data" class="form-horizontal">
+                <div class="row form-group my-3 ">
+                    <div class="col col-md-3">
+                        <label for="text-input" class=" form-control-label">Enter First Name </label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input type="text" id="text-input" name="fname" placeholder="First name" class="form-control">
+                    </div>
+                </div>
+                <div class="row form-group my-3 ">
+                    <div class="col col-md-3">
+                        <label for="text-input" class=" form-control-label">Enter Last Name </label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input type="text" id="text-input" name="lname" placeholder="Last name" class="form-control">
+                    </div>
+                </div>
+                <div class="row form-group my-3 ">
+                    <div class="col col-md-3">
+                        <label for="email-input" class=" form-control-label">Enter Email </label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input type="email" id="email-input" name="email" placeholder="Email" class="form-control">
+                    </div>
+                </div>
+                <div class="row form-group my-3 ">
+                    <div class="col col-md-3">
+                        <label for="password-input" class=" form-control-label">Password</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input type="password" id="password-input" name="password" placeholder="Password" class="form-control">
+                    </div>
+                </div>
+                <div class="row form-group my-3 ">
+                    <div class="col col-md-3">
+                        <label class=" form-control-label">Select Gender</label>
+                    </div>
+                    <div class="col col-md-9">
+                        <div class="form-check-inline form-check">
+                            <label for="inline-radio1" class="form-check-label">
+                                <input type="radio" id="inline-radio1" name="gender" value="male" class="form-check-input">Male
+                            </label>&nbsp;&nbsp;&nbsp;
+                            <label for="inline-radio2" class="form-check-label ms-3">
+                                <input type="radio" id="inline-radio2" name="gender" value="female" class="form-check-input">Female
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row form-group my-3 ">
+                    <div class="col col-md-3">
+                        <label class=" form-control-label">Select Hobby</label>
+                    </div>
+                    <div class="col col-md-9">
+                        <div class="form-check-inline form-check">
+                            <label for="inline-checkbox1" class="form-check-label ">
+                                <input type="checkbox" id="inline-checkbox1" name="hobby" value="Coding" class="form-check-input">Coding
+                            </label>&nbsp;&nbsp;&nbsp;
+                            <label for="inline-checkbox2" class="form-check-label ms-3">
+                                <input type="checkbox" id="inline-checkbox2" name="hobby" value="Gaming" class="form-check-input">Gaming
+                            </label>&nbsp;&nbsp;&nbsp;
+                            <label for="inline-checkbox3" class="form-check-label ms-3">
+                                <input type="checkbox" id="inline-checkbox3" name="hobby" value="Reading" class="form-check-input">Reading
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row form-group my-3 ">
+                    <div class="col col-md-3">
+                        <label for="select" class=" form-control-label">Select City</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <% var city = ["Surat","Vadodara","Bhavnagar"] %>
+                        <select name="city" id="select" class="form-control">
+                            <option value="">Please select</option>
+                            <% city.map((v)=>{ %>
+                                <option value="<%= v %>"><%= v %></option>
+                            <% }) %>
+                        </select>
+                    </div>
+                </div>
+                <div class="row form-group my-3 ">
+                    <div class="col col-md-3">
+                        <label for="textarea-input" class=" form-control-label">Description</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <textarea name="description" id="textarea-input" rows="3" placeholder="Enter text here..." style="resize: none;" class="form-control"></textarea>
+                    </div>
+                </div>                                            
+                <div class="row form-group my-3 ">
+                    <div class="col col-md-3">
+                        <label for="file-input" class=" form-control-label">Upload Image</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input type="file" id="file-input" name="adminImage" class="form-control-file">
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary btn-sm">
+                        <i class="fa fa-dot-circle-o"></i> Submit
+                    </button>
+                    <button type="reset" class="btn btn-danger btn-sm">
+                        <i class="fa fa-ban"></i> Reset
+                    </button>
+                </div>
+            </form>
+
+              <!-- End General Form Elements -->
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+<%- include("footer") %>

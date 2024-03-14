@@ -1,0 +1,130 @@
+<%- include("../header.ejs") %>
+
+<main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Update Product</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">Home</a></li>
+          <li class="breadcrumb-item">Admin</li>
+          <li class="breadcrumb-item">Product</li>
+          <li class="breadcrumb-item active">Update Product</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-10">
+
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Edit Product Details</h5>
+
+              <!-- General Form Elements -->
+              
+              <form action="/admin/product/editProduct" method="post" enctype="multipart/form-data" class="form-horizontal">
+                <input type="hidden" name="oldId" value="<%= proData.id %>">
+
+                <div class="row form-group my-3 ">
+                  <div class="col col-md-3">
+                    <label for="text-input" class=" form-control-label">Enter Title </label>
+                  </div>
+                  <div class="col-12 col-md-9">
+                    <input type="text" id="text-input" name="title" value="<%= proData.title %>" placeholder="Enter Product" class="form-control">
+                  </div>
+                </div>
+
+                <div class="row form-group my-3 ">
+                  <div class="col col-md-3">
+                    <label for="text-input" class=" form-control-label">Enter Price </label>
+                  </div>
+                  <div class="col-12 col-md-9">
+                    <input type="text" id="text-input" name="price" value="<%= proData.price %>" placeholder="Enter Price" class="form-control">
+                  </div>
+                </div>
+
+                <div class="row form-group my-3 ">
+                  <div class="col col-md-3">
+                    <label for="text-input" class=" form-control-label">Enter Old Price </label>
+                  </div>
+                  <div class="col-12 col-md-9">
+                    <input type="text" id="text-input" value="<%= proData.oldPrice %>" name="oldPrice" placeholder="Enter Old Price"
+                      class="form-control">
+                  </div>
+                </div>
+
+                <div class="row form-group my-3 ">
+                  <div class="col col-md-3">
+                    <label for="text-input" class=" form-control-label">Enter Description </label>
+                  </div>
+                  <div class="col-12 col-md-9">
+                    <input type="text" id="text-input" value="<%= proData.desc %>" name="desc" placeholder="Enter Description" class="form-control">
+                  </div>
+                </div>
+
+                <div class="row form-group my-3 ">
+                  <div class="col col-md-3">
+                    <label for="text-input" class=" form-control-label">Select Colours </label>
+                  </div>
+                  <div class="col-1 col-md-1">
+                    <% proData.colors.map((v)=> { %>
+                      <input type="color" id="text-input" value="<%= v %>" name="colors" class="form-control">
+                    <% }) %>
+                  </div>
+                </div>
+
+                <div class="row form-group my-3 ">
+                  <div class="col col-md-3">
+                    <label for="text-input" class=" form-control-label">Enter Sizes </label>
+                  </div>
+                  <div class="col-12 col-md-9">
+                    <% proData.sizes.map((v)=> { %>
+                      <input type="text" id="text-input" value="<%= v %>" name="sizes" placeholder="Enter Size" class="form-control">
+                    <% }) %>
+                  </div>
+                </div>
+
+                <div class="row form-group my-3 ">
+                  <div class="col col-md-3">
+                    <label for="file-input" class=" form-control-label">Upload Primary Image</label>
+                  </div>
+                  <div class="col-12 col-md-9">
+                    <input type="file" id="file-input" name="pri_image" class="form-control-file">
+                    <img src="<%= proData.pri_image %>" height="50px">
+                  </div>
+                </div>
+                
+                <div class="row form-group my-3 ">
+                  <div class="col col-md-3">
+                    <label for="file-input" class=" form-control-label">Upload Multiple Image</label>
+                  </div>
+                  <div class="col-12 col-md-9">
+                    <input type="file" id="file-input" name="multi_image" class="form-control-file" multiple>
+                    <% proData.multi_images.map((v) => { %>
+                      <img src="<%= v %>" height="50px">
+                      <% }) %>
+                  </div>
+                </div>
+
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary btn-sm">
+                        <i class="fa fa-dot-circle-o"></i> Submit
+                    </button>
+                </div>
+            </form>
+
+              <!-- End General Form Elements -->
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+<%- include("../footer.ejs") %>
