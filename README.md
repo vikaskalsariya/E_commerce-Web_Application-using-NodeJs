@@ -1,3 +1,0 @@
-# NodeJS-eCommerce
-
-Led the development of a dynamic e-commerce platform using Node.js, Express.js, and JavaScript. Engineered a responsive and intuitive web application for customers and administrators. Implemented secure user authentication, order tracking, and profile management. Designed an efficient product catalog system with real-time inventory tracking and a seamless checkout process. Integrated popular payment gateways for secure transactions. Leveraged asynchronous operations for optimal performance, ensuring rapid handling of concurrent user requests. Combined flexibility, speed, and security to deliver a compelling online shopping experience. Adeptly managed the project life cycle, collaborating with cross-functional teams to meet project objectives.
