@@ -1,0 +1,12 @@
+<% Data.map((v,i)=>{ %>
+
+    <div class="d-flex row">
+        <div class="col-lg-6">
+            <div class="position-relative" style="width: 80px;">
+                <img src="<%= v %>" alt="" height="50px" width="100%">
+                <i class="ri-close-fill position-absolute"
+                    onclick="return removeOneImg('<%= v %>','<%= i %>','<%= ProId %>')"></i>
+            </div>
+        </div>
+    </div>
+    <% }) %>

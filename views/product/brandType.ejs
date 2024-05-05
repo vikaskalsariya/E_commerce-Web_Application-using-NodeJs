@@ -1,0 +1,28 @@
+
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">Brand</label>
+        <div class="col-sm-10">
+            <select class="form-select" aria-label="Default select example" name="brandId" id="brandId">
+                <option selected>- - - Select Brand - - -</option>
+                <% for(var BrandData of BrandData){ %>
+                    <option value="<%= BrandData.id %>">
+                        <%= BrandData.brand %>
+                    </option>
+                    <% } %>
+            </select>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label class="col-sm-2 col-form-label">Type</label>
+        <div class="col-sm-10">
+            <select class="form-select" aria-label="Default select example" name="typeId" id="typeId">
+                <option selected>- - - Select Type - - -</option>
+                <% for(var TypeData of TypeData){ %>
+                    <option value="<%= TypeData.id %>">
+                        <%= TypeData.type %>
+                    </option>
+                    <% } %>
+            </select>
+        </div>
+    </div>

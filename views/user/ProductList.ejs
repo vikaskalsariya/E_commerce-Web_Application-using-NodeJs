@@ -1,0 +1,1140 @@
+<%- include('user_header') %>
+  <style>
+    .range-slider {
+      *zoom: 1;
+      margin: 20px 0;
+      padding-top: 3.5em;
+      position: relative;
+      text-align: center;
+    }
+
+    .range-slider:before,
+    .range-slider:after {
+      content: " ";
+      display: table;
+    }
+
+    .range-slider:after {
+      clear: both;
+    }
+
+    @media (min-width: 640px) {
+      .range-slider {
+        padding-top: 3.5em;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .range-slider {
+        padding-top: 3.5em;
+      }
+    }
+
+    .range-slider .track {
+      bottom: 15px;
+      height: 6px;
+      left: 0;
+      margin-bottom: -3px;
+      position: absolute;
+      width: 0;
+      z-index: 50;
+    }
+
+    @media (min-width: 640px) {
+      .range-slider .track {
+        bottom: 15px;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .range-slider .track {
+        bottom: 15px;
+      }
+    }
+
+    .range-slider .track--full {
+      background: #aaa;
+      width: 100%;
+    }
+
+    .range-slider .track--included {
+      background: #108bea;
+      border-radius: 3px;
+    }
+
+    .range-slider .slider-thumb {
+      background: #555;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      display: block\9;
+      height: 30px;
+      left: 0;
+      position: absolute;
+      width: 30px;
+      z-index: 101;
+    }
+
+    @media screen and (-ms-high-contrast: active),
+    (-ms-high-contrast: none) {
+      .range-slider .slider-thumb {
+        display: block;
+      }
+    }
+
+    @media (min-width: 640px) {
+      .range-slider .slider-thumb {
+        height: 30px;
+        width: 30px;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .range-slider .slider-thumb {
+        height: 30px;
+        width: 30px;
+      }
+    }
+
+    .range-slider [type=range] {
+      -webkit-appearance: none;
+      background: none;
+      height: 30px;
+      margin: 0;
+      outline: none;
+      padding: 0;
+      pointer-events: none;
+      position: relative;
+      width: 100%;
+      z-index: 75;
+    }
+
+    @media (min-width: 640px) {
+      .range-slider [type=range] {
+        height: 30px;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .range-slider [type=range] {
+        height: 30px;
+      }
+    }
+
+    .range-slider [type=range]:focus {
+      outline: none;
+    }
+
+    .range-slider [type=range]::-moz-focus-outer {
+      border: 0;
+    }
+
+    .range-slider [type=range]:first-of-type {
+      float: left;
+      margin-bottom: -30px;
+    }
+
+    @media (min-width: 640px) {
+      .range-slider [type=range]:first-of-type {
+        margin-bottom: -30px;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .range-slider [type=range]:first-of-type {
+        margin-bottom: -30px;
+      }
+    }
+
+    .range-slider [type=range]:last-of-type {
+      float: right;
+      margin-bottom: 0;
+    }
+
+    .range-slider [type=range]::-webkit-slider-runnable-track {
+      background: none;
+      border: 0;
+      height: 6px;
+      z-index: -1;
+    }
+
+    .range-slider [type=range]::-ms-fill-lower {
+      background: none;
+      border: 0;
+    }
+
+    .range-slider [type=range]::-ms-fill-upper {
+      background: none;
+      border: 0;
+    }
+
+    .range-slider [type=range]::-ms-track {
+      background: transparent;
+      border: 0;
+      border-color: transparent;
+      color: transparent;
+      height: 6px;
+      z-index: -1;
+    }
+
+    .range-slider [type=range]:focus::-ms-fill-lower {
+      background: none;
+      border: 0;
+    }
+
+    .range-slider [type=range]:focus::-ms-fill-upper {
+      background: none;
+      border: 0;
+    }
+
+    .range-slider [type=range]::-moz-range-track {
+      -moz-appearance: none;
+      background: none;
+      border: 0;
+      height: 6px;
+      z-index: -1;
+    }
+
+    .range-slider [type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      background: #555;
+      border: 0;
+      border-radius: 50%;
+      cursor: pointer;
+      height: 30px;
+      margin-top: -12px;
+      outline: 0;
+      pointer-events: all;
+      position: relative;
+      width: 30px;
+      z-index: 100;
+    }
+
+    @media (min-width: 640px) {
+      .range-slider [type=range]::-webkit-slider-thumb {
+        height: 30px;
+        margin-top: -12px;
+        width: 30px;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .range-slider [type=range]::-webkit-slider-thumb {
+        height: 30px;
+        margin-top: -12px;
+        width: 30px;
+      }
+    }
+
+    .range-slider [type=range]::-ms-thumb {
+      background: #555;
+      border: 0;
+      border-radius: 50%;
+      cursor: pointer;
+      height: 30px;
+      margin-top: 0;
+      pointer-events: all;
+      position: relative;
+      width: 30px;
+      z-index: 100;
+    }
+
+    @media (min-width: 640px) {
+      .range-slider [type=range]::-ms-thumb {
+        height: 30px;
+        width: 30px;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .range-slider [type=range]::-ms-thumb {
+        height: 30px;
+        width: 30px;
+      }
+    }
+
+    .range-slider [type=range]::-moz-range-thumb {
+      -moz-appearance: none;
+      background: #555;
+      border: 0;
+      border-radius: 50%;
+      cursor: pointer;
+      height: 30px;
+      margin-top: -12px;
+      pointer-events: all;
+      position: relative;
+      width: 30px;
+      z-index: 100;
+    }
+
+    @media (min-width: 640px) {
+      .range-slider [type=range]::-moz-range-thumb {
+        height: 30px;
+        margin-top: -12px;
+        width: 30px;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .range-slider [type=range]::-moz-range-thumb {
+        height: 30px;
+        margin-top: -12px;
+        width: 30px;
+      }
+    }
+
+    .range-slider .output,
+    .range-slider output {
+      background: #fff;
+      border: 1px solid #aaa;
+      border-radius: 4px;
+      color: #aaa;
+      display: inline-block;
+      height: 2.5em;
+      left: 50%;
+      line-height: 2.5em;
+      padding: 0 0.75em;
+      position: absolute;
+      text-align: center;
+      top: 0;
+      transform: translate(-50%, 0);
+    }
+  </style>
+  <div class="breadcrumb">
+    <div class="container">
+      <div class="breadcrumb-inner">
+        <ul class="list-inline list-unstyled">
+          <li><a href="/">Home</a></li>
+          <li class='active'>Handbags</li>
+        </ul>
+      </div>
+      <!-- /.breadcrumb-inner -->
+    </div>
+    <!-- /.container -->
+  </div>
+  <!-- /.breadcrumb -->
+  <div class="body-content outer-top-xs">
+    <div class='container'>
+      <div class='row'>
+        <div class='col-xs-12 col-sm-12 col-md-3 sidebar'>
+          <!-- ================================== TOP NAVIGATION ================================== -->
+
+          <!-- ================================== TOP NAVIGATION : END ================================== -->
+          <div class="sidebar-module-container">
+            <div class="sidebar-filter">
+              <!-- ============================================== SIDEBAR CATEGORY ============================================== -->
+              <div class="sidebar-widget">
+                <h3 class="section-title">Shop by</h3>
+                <div class="widget-header">
+                  <h4 class="widget-title">Category</h4>
+                </div>
+                <div class="sidebar-widget-body">
+                  <% for(var Cat of CatData){ for(var Sub of SubcatData){ if(Sub.categoryId==Cat.id) {%>
+                    <div class="accordion">
+                      <div class="accordion-group">
+                        <div class="accordion-heading"> <a href="#collapseOne" data-toggle="collapse"
+                            class="accordion-toggle collapsed">
+                            <%= Sub.subcategory %>
+                          </a> </div>
+                        <!-- /.accordion-heading -->
+                        <div class="accordion-body collapse" id="collapseOne" style="height: 0px;">
+                          <div class="accordion-inner">
+                            <ul>
+                              <% for(var Extra of ExtracatData){ if(Extra.subcategoryId==Sub.id &&
+                                Extra.categoryId==Cat.id) { %>
+                                <li><a href="/Productlist/<%= Cat.id %>/<%= Sub.id %>/<%= Extra.id %>">
+                                    <%= Extra.extracategory %>
+                                  </a></li>
+                                <%} }%>
+                            </ul>
+                          </div>
+                          <!-- /.accordion-inner -->
+                        </div>
+                        <!-- /.accordion-body -->
+                      </div>
+                      <!-- /.accordion-group -->
+
+
+                    </div>
+                    <% } } }%>
+                      <!-- /.accordion -->
+                </div>
+                <!-- /.sidebar-widget-body -->
+              </div>
+              <!-- /.sidebar-widget -->
+              <!-- ============================================== SIDEBAR CATEGORY : END ============================================== -->
+
+              <!-- ============================================== PRICE SILDER============================================== -->
+              <div class="sidebar-widget">
+                <div class="widget-header">
+                  <h4 class="widget-title">Price Slider</h4>
+                </div>
+                <div class="sidebar-widget-body m-t-10">
+                  <section class="range-slider" id="facet-price-range-slider">
+
+                    <input name="range-1" value="<%= min %>" min="<%= min %>" max="<%= max %>" step="1" type="range"
+                      id="minId" onchange="return getValue()">
+
+                    <input name="range-2" value="<%= max %>" min="<%= min %>" max="<%= max %>" step="1" type="range" id="maxId"
+                      onchange="return getValue()">
+
+                  </section>
+                </div>
+                <!-- /.sidebar-widget-body -->
+              </div>
+              <!-- /.sidebar-widget -->
+              <!-- ============================================== PRICE SILDER : END ============================================== -->
+              <!-- ============================================== MANUFACTURES============================================== -->
+              <div class="sidebar-widget">
+                <div class="widget-header">
+                  <h4 class="widget-title">Manufactures</h4>
+                </div>
+                <div class="sidebar-widget-body">
+                  <ul class="list">
+                    <% brandList.map((v)=>{ %>
+                      <li><a href="javascript:getBrandData('<%= v.id %>')" ><%= v.brand %></a></li>
+                      <% }) %>
+                  </ul>
+                  <!--<a href="#" class="lnk btn btn-primary">Show Now</a>-->
+                </div>
+                <!-- /.sidebar-widget-body -->
+              </div>
+              <!-- /.sidebar-widget -->
+              <!-- ============================================== MANUFACTURES: END ============================================== -->
+              <!-- ============================================== COLOR============================================== -->
+              <div class="sidebar-widget">
+                <div class="widget-header">
+                  <h4 class="widget-title">Colors</h4>
+                </div>
+                <div class="sidebar-widget-body">
+                  <ul class="list">
+                    <li><a href="#">Red</a></li>
+                    <li><a href="#">Blue</a></li>
+                    <li><a href="#">Yellow</a></li>
+                    <li><a href="#">Pink</a></li>
+                    <li><a href="#">Brown</a></li>
+                    <li><a href="#">Teal</a></li>
+                  </ul>
+                </div>
+                <!-- /.sidebar-widget-body -->
+              </div>
+              <!-- /.sidebar-widget -->
+              <!-- ============================================== COLOR: END ============================================== -->
+              <!-- ============================================== COMPARE============================================== -->
+              <div class="sidebar-widget outer-top-vs">
+                <h3 class="section-title">Compare products</h3>
+                <div class="sidebar-widget-body">
+                  <div class="compare-report">
+                    <p>You have no <span>item(s)</span> to compare</p>
+                  </div>
+                  <!-- /.compare-report -->
+                </div>
+                <!-- /.sidebar-widget-body -->
+              </div>
+              <!-- /.sidebar-widget -->
+              <!-- ============================================== COMPARE: END ============================================== -->
+              <!-- ============================================== PRODUCT TAGS ============================================== -->
+              <div class="sidebar-widget product-tag outer-top-vs">
+                <h3 class="section-title">Product tags</h3>
+                <div class="sidebar-widget-body outer-top-xs">
+                  <div class="tag-list"> <a class="item" title="Phone" href="category.html">Phone</a> <a
+                      class="item active" title="Vest" href="category.html">Vest</a> <a class="item" title="Smartphone"
+                      href="category.html">Smartphone</a> <a class="item" title="Furniture"
+                      href="category.html">Furniture</a> <a class="item" title="T-shirt"
+                      href="category.html">T-shirt</a> <a class="item" title="Sweatpants"
+                      href="category.html">Sweatpants</a> <a class="item" title="Sneaker"
+                      href="category.html">Sneaker</a> <a class="item" title="Toys" href="category.html">Toys</a> <a
+                      class="item" title="Rose" href="category.html">Rose</a> </div>
+                  <!-- /.tag-list -->
+                </div>
+                <!-- /.sidebar-widget-body -->
+              </div>
+              <!-- /.sidebar-widget -->
+              <!-- /.Testimonials -->
+              <div class="sidebar-widget  outer-top-vs ">
+                <div id="advertisement" class="advertisement">
+                  <div class="item">
+                    <div class="avatar"><img src="/assets/images/testimonials/member1.png" alt="Image"></div>
+                    <div class="testimonials"><em>"</em> Vtae sodales aliq uam morbi non sem lacus port mollis. Nunc
+                      condime tum metus eud molest sed consectetuer. Sed quia non numquam eius modi tempora incidunt ut
+                      labore et dolore.<em>"</em></div>
+                    <div class="clients_author">John Doe <span>Abc Company</span> </div>
+                    <!-- /.container-fluid -->
+                  </div>
+                  <!-- /.item -->
+
+                  <div class="item">
+                    <div class="avatar"><img src="/assets/images/testimonials/member3.png" alt="Image"></div>
+                    <div class="testimonials"><em>"</em>Vtae sodales aliq uam morbi non sem lacus port mollis. Nunc
+                      condime tum metus eud molest sed consectetuer. Sed quia non numquam eius modi tempora incidunt ut
+                      labore et dolore.<em>"</em></div>
+                    <div class="clients_author">Stephen Doe <span>Xperia Designs</span> </div>
+                  </div>
+                  <!-- /.item -->
+
+                  <div class="item">
+                    <div class="avatar"><img src="/assets/images/testimonials/member2.png" alt="Image"></div>
+                    <div class="testimonials"><em>"</em> Vtae sodales aliq uam morbi non sem lacus port mollis. Nunc
+                      condime tum metus eud molest sed consectetuer. Sed quia non numquam eius modi tempora incidunt ut
+                      labore et dolore.<em>"</em></div>
+                    <div class="clients_author">Saraha Smith <span>Datsun &amp; Co</span> </div>
+                    <!-- /.container-fluid -->
+                  </div>
+                  <!-- /.item -->
+
+                </div>
+                <!-- /.owl-carousel -->
+              </div>
+
+              <!-- ============================================== Testimonials: END ============================================== -->
+
+              <!-- ============================================== NEWSLETTER ============================================== -->
+              <div class="sidebar-widget newsletter outer-bottom-small  outer-top-vs">
+                <h3 class="section-title">Newsletters</h3>
+                <div class="sidebar-widget-body outer-top-xs">
+                  <p>Sign Up for Our Newsletter!</p>
+                  <form>
+                    <div class="form-group">
+                      <label class="sr-only" for="exampleInputEmail1">Email address</label>
+                      <input type="email" class="form-control" id="exampleInputEmail1"
+                        placeholder="Subscribe to our newsletter">
+                    </div>
+                    <button class="btn btn-primary">Subscribe</button>
+                  </form>
+                </div>
+                <!-- /.sidebar-widget-body -->
+              </div>
+              <!-- /.sidebar-widget -->
+              <!-- ============================================== NEWSLETTER: END ============================================== -->
+
+
+            </div>
+            <!-- /.sidebar-filter -->
+          </div>
+          <!-- /.sidebar-module-container -->
+        </div>
+        <!-- /.sidebar -->
+        <div class="col-xs-12 col-sm-12 col-md-9 rht-col">
+          <!-- ========================================== SECTION – HERO ========================================= -->
+
+          <div id="category" class="category-carousel hidden-xs">
+            <div class="item">
+              <div class="image"> <img src="/assets/images/banners/cat-banner-1.jpg" alt="" class="img-responsive">
+              </div>
+              <div class="container-fluid">
+                <div class="caption vertical-top text-left">
+                  <div class="big-text"> Big Sale </div>
+                  <div class="excerpt hidden-sm hidden-md"> Save up to 49% off </div>
+                  <div class="excerpt-normal hidden-sm hidden-md"> Lorem ipsum dolor sit amet, consectetur adipiscing
+                    elit </div>
+                  <div class="buy-btn"><a href="#" class="lnk btn btn-primary">Show Now</a></div>
+                </div>
+                <!-- /.caption -->
+              </div>
+              <!-- /.container-fluid -->
+            </div>
+          </div>
+
+
+          <div class="clearfix filters-container m-t-10">
+            <div class="row">
+              <div class="col col-sm-6 col-md-3 col-lg-3 col-xs-6">
+                <div class="filter-tabs">
+                  <ul id="filter-tabs" class="nav nav-tabs nav-tab-box nav-tab-fa-icon">
+                    <li class="active"> <a data-toggle="tab" href="#grid-container" onclick="getListStyle('grid')"><i
+                          class="icon fa fa-th-large"></i>Grid</a> </li>
+                    <li><a data-toggle="tab" href="#list-container" onclick="getListStyle('list')"><i class="icon fa fa-bars"></i>List</a></li>
+                  </ul>
+                </div>
+                <!-- /.filter-tabs -->
+              </div>
+              <!-- /.col -->
+              <div class="col col-sm-12 col-md-5 col-lg-5 hidden-sm">
+                <div class="col col-sm-6 col-md-6 no-padding">
+                  <div class="lbl-cnt"> <span class="lbl">Sort by</span>
+                    <div class="fld inline">
+                      <div class="dropdown dropdown-small dropdown-med dropdown-white inline">
+                        <button data-toggle="dropdown" type="button" class="btn dropdown-toggle"> Position <span
+                            class="caret"></span> </button>
+                        <ul role="menu" class="dropdown-menu">
+                          <li role="presentation"><a href="#">position</a></li>
+                          <li role="presentation"><a href="#">Price:Lowest first</a></li>
+                          <li role="presentation"><a href="#">Price:HIghest first</a></li>
+                          <li role="presentation"><a href="#">Product Name:A to Z</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                    <!-- /.fld -->
+                  </div>
+                  <!-- /.lbl-cnt -->
+                </div>
+                <!-- /.col -->
+                <div class="col col-sm-6 col-md-6 no-padding hidden-sm hidden-md">
+                  <div class="lbl-cnt"> <span class="lbl">Show</span>
+                    <div class="fld inline">
+                      <div class="dropdown dropdown-small dropdown-med dropdown-white inline">
+                        <button data-toggle="dropdown" type="button" class="btn dropdown-toggle"> 1 <span
+                            class="caret"></span> </button>
+                        <ul role="menu" class="dropdown-menu">
+                          <li role="presentation"><a href="#">1</a></li>
+                          <li role="presentation"><a href="#">2</a></li>
+                          <li role="presentation"><a href="#">3</a></li>
+                          <li role="presentation"><a href="#">4</a></li>
+                          <li role="presentation"><a href="#">5</a></li>
+                          <li role="presentation"><a href="#">6</a></li>
+                          <li role="presentation"><a href="#">7</a></li>
+                          <li role="presentation"><a href="#">8</a></li>
+                          <li role="presentation"><a href="#">9</a></li>
+                          <li role="presentation"><a href="#">10</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                    <!-- /.fld -->
+                  </div>
+                  <!-- /.lbl-cnt -->
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- /.col -->
+              <div class="col col-sm-6 col-md-4 col-xs-6 col-lg-4 text-right">
+                <div class="pagination-container">
+                  <ul class="list-inline list-unstyled">
+                    <li class="prev"><a href="#"><i class="fa fa-angle-left"></i></a></li>
+                    <li><a href="#">1</a></li>
+                    <li class="active"><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li class="next"><a href="#"><i class="fa fa-angle-right"></i></a></li>
+                  </ul>
+                  <!-- /.list-inline -->
+                </div>
+                <!-- /.pagination-container -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+          </div>
+          <div class="search-result-container ">
+            <div id="rangeData" class="tab-content category-list">
+              <div class="tab-pane active " id="grid-container">
+                <div class="category-product" >
+                  <div class="row">
+                    <% for(var Data of ProductData){ %>
+                      <div class="col-sm-6 col-md-4 col-lg-3">
+                        <div class="item">
+                          <div class="products">
+                            <div class="product">
+                              <div class="product-image">
+                                <div class="image">
+                                  <a href="/singleProduct/<%= Data.id %>">
+                                    <img src="<%= Data.singleProductImg %>" alt="">
+                                    <img src="<%= Data.multiProductImg[0] %>" alt="" class="hover-image">
+                                  </a>
+                                </div>
+                                <!-- /.image -->
+
+                                <div class="tag new"><span>new</span></div>
+                              </div>
+                              <!-- /.product-image -->
+
+                              <div class="product-info text-left">
+                                <h3 class="name"><a href="/singleProduct/<%= Data.id %>">
+                                    <%= Data.name %>
+                                  </a></h3>
+                                <div class="rating rateit-small"></div>
+                                <div class="description"></div>
+                                <div class="product-price"> <span class="price">
+                                    <%= Data.price %>
+                                  </span> <span class="price-before-discount">
+                                    <%= Data.oldPrice %>
+                                  </span> </div>
+                                <!-- /.product-price -->
+
+                              </div>
+                              <!-- /.product-info -->
+                              <div class="cart clearfix animate-effect">
+                                <div class="action">
+                                  <ul class="list-unstyled">
+                                    <li class="add-cart-button btn-group">
+                                      <button class="btn btn-primary icon" data-toggle="dropdown" type="button"> <i
+                                          class="fa fa-shopping-cart"></i> </button>
+                                      <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
+                                    </li>
+                                    <li class="lnk wishlist"> <a class="add-to-cart" title="Wishlist"> <i
+                                          class="icon fa fa-heart"></i> </a> </li>
+                                    <li class="lnk"> <a class="add-to-cart" title="Compare"> <i
+                                          class="fa fa-signal"></i> </a> </li>
+                                  </ul>
+                                </div>
+                                <!-- /.action -->
+                              </div>
+                              <!-- /.cart -->
+                            </div>
+                            <!-- /.product -->
+
+                          </div>
+                          <!-- /.products -->
+                        </div>
+                      </div>
+                      <% }%>
+                        <!-- /.item -->
+
+                  </div>
+                  <!-- /.row -->
+                </div>
+                <!-- /.category-product -->
+
+              </div>
+              <!-- /.tab-pane -->
+
+              <div class="tab-pane " id="list-container">
+                <div class="category-product">
+                  <% for(var Data of ProductData){ %>
+                    <div class="category-product-inner">
+                      <div class="products">
+                        <div class="product-list product">
+                          <div class="row product-list-row">
+                            <div class="col col-sm-3 col-lg-3">
+                              <div class="product-image">
+                                <div class="image"> <img src="<%= Data.singleProductImg %>" alt=""> </div>
+                              </div>
+                              <!-- /.product-image -->
+                            </div>
+                            <!-- /.col -->
+                            <div class="col col-sm-9 col-lg-9">
+                              <div class="product-info">
+                                <h3 class="name"><a href="detail.html">
+                                    <%= Data.name %>
+                                  </a></h3>
+                                <div class="rating rateit-small"></div>
+                                <div class="product-price"> <span class="price">
+                                    <%= Data.price %>
+                                  </span> <span class="price-before-discount">
+                                    <%= Data.oldPrice %>
+                                  </span> </div>
+                                <!-- /.product-price -->
+                                <div class="description m-t-10">
+                                  <%= Data.description %>
+                                </div>
+                                <div class="cart clearfix animate-effect">
+                                  <div class="action">
+                                    <ul class="list-unstyled">
+                                      <li class="add-cart-button btn-group">
+                                        <button class="btn btn-primary icon" data-toggle="dropdown" type="button"> <i
+                                            class="fa fa-shopping-cart"></i> </button>
+                                        <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
+                                      </li>
+                                      <li class="lnk wishlist"> <a class="add-to-cart" href="detail.html"
+                                          title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>
+                                      <li class="lnk"> <a class="add-to-cart" href="detail.html" title="Compare"> <i
+                                            class="fa fa-signal"></i> </a> </li>
+                                    </ul>
+                                  </div>
+                                  <!-- /.action -->
+                                </div>
+                                <!-- /.cart -->
+
+                              </div>
+                              <!-- /.product-info -->
+                            </div>
+                            <!-- /.col -->
+                          </div>
+                          <!-- /.product-list-row -->
+                          <div class="tag new"><span>new</span></div>
+                        </div>
+                        <!-- /.product-list -->
+                      </div>
+                      <!-- /.products -->
+                    </div>
+                    <% } %>
+                      <!-- /.category-product-inner -->
+
+                </div>
+                <!-- /.category-product -->
+              </div>
+              <!-- /.tab-pane #list-container -->
+            </div>
+            <!-- /.tab-content -->
+            <div class="clearfix filters-container bottom-row">
+              <div class="text-right">
+                <div class="pagination-container">
+                  <ul class="list-inline list-unstyled">
+                    <li class="prev"><a href="#"><i class="fa fa-angle-left"></i></a></li>
+                    <li><a href="#">1</a></li>
+                    <li class="active"><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li class="next"><a href="#"><i class="fa fa-angle-right"></i></a></li>
+                  </ul>
+                  <!-- /.list-inline -->
+                </div>
+                <!-- /.pagination-container -->
+              </div>
+              <!-- /.text-right -->
+
+            </div>
+            <!-- /.filters-container -->
+
+          </div>
+          <!-- /.search-result-container -->
+
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+      <!-- ============================================== BRANDS CAROUSEL ============================================== -->
+      <div id="brands-carousel" class="logo-slider">
+        <div class="logo-slider-inner">
+          <div id="brand-slider" class="owl-carousel brand-slider custom-carousel owl-theme">
+            <div class="item m-t-15"> <a href="#" class="image"> <img data-echo="/assets/images/brands/brand1.png"
+                  src="/assets/images/blank.gif" alt=""> </a> </div>
+            <!--/.item-->
+
+            <div class="item m-t-10"> <a href="#" class="image"> <img data-echo="/assets/images/brands/brand2.png"
+                  src="/assets/images/blank.gif" alt=""> </a> </div>
+            <!--/.item-->
+
+            <div class="item"> <a href="#" class="image"> <img data-echo="/assets/images/brands/brand3.png"
+                  src="/assets/images/blank.gif" alt=""> </a> </div>
+            <!--/.item-->
+
+            <div class="item"> <a href="#" class="image"> <img data-echo="/assets/images/brands/brand4.png"
+                  src="/assets/images/blank.gif" alt=""> </a> </div>
+            <!--/.item-->
+
+            <div class="item"> <a href="#" class="image"> <img data-echo="/assets/images/brands/brand5.png"
+                  src="/assets/images/blank.gif" alt=""> </a> </div>
+            <!--/.item-->
+
+            <div class="item"> <a href="#" class="image"> <img data-echo="/assets/images/brands/brand6.png"
+                  src="/assets/images/blank.gif" alt=""> </a> </div>
+            <!--/.item-->
+
+            <div class="item"> <a href="#" class="image"> <img data-echo="/assets/images/brands/brand2.png"
+                  src="/assets/images/blank.gif" alt=""> </a> </div>
+            <!--/.item-->
+
+            <div class="item"> <a href="#" class="image"> <img data-echo="/assets/images/brands/brand4.png"
+                  src="/assets/images/blank.gif" alt=""> </a> </div>
+            <!--/.item-->
+
+            <div class="item"> <a href="#" class="image"> <img data-echo="/assets/images/brands/brand1.png"
+                  src="/assets/images/blank.gif" alt=""> </a> </div>
+            <!--/.item-->
+
+            <div class="item"> <a href="#" class="image"> <img data-echo="/assets/images/brands/brand5.png"
+                  src="/assets/images/blank.gif" alt=""> </a> </div>
+            <!--/.item-->
+          </div>
+          <!-- /.owl-carousel #logo-slider -->
+        </div>
+        <!-- /.logo-slider-inner -->
+
+      </div>
+      <!-- /.logo-slider -->
+      <!-- ============================================== BRANDS CAROUSEL : END ============================================== -->
+    </div>
+    <!-- /.container -->
+
+  </div>
+  <!-- /.body-content -->
+
+  <%- include('user_footer') %>
+
+    <script>
+      (function ($) {
+
+        "use strict";
+
+        var DEBUG = false, // make true to enable debug output
+          PLUGIN_IDENTIFIER = "RangeSlider";
+
+        var RangeSlider = function (element, options) {
+          this.element = element;
+          this.options = options || {};
+          this.defaults = {
+            output: {
+              prefix: '', // function or string
+              suffix: '', // function or string
+              format: function (output) {
+                return output;
+              }
+            },
+            change: function (event, obj) { }
+          };
+          // This next line takes advantage of HTML5 data attributes
+          // to support customization of the plugin on a per-element
+          // basis.
+          this.metadata = $(this.element).data('options');
+        };
+
+        RangeSlider.prototype = {
+
+          ////////////////////////////////////////////////////
+          // Initializers
+          ////////////////////////////////////////////////////
+
+          init: function () {
+            if (DEBUG && console) console.log('RangeSlider init');
+            this.config = $.extend(true, {}, this.defaults, this.options, this.metadata);
+
+            var self = this;
+            // Add the markup for the slider track
+            this.trackFull = $('<div class="track track--full"></div>').appendTo(self.element);
+            this.trackIncluded = $('<div class="track track--included"></div>').appendTo(self.element);
+            this.inputs = [];
+
+            $('input[type="range"]', this.element).each(function (index, value) {
+              var rangeInput = this;
+              // Add the ouput markup to the page.
+              rangeInput.output = $('<output>').appendTo(self.element);
+              // Get the current z-index of the output for later use
+              rangeInput.output.zindex = parseInt($(rangeInput.output).css('z-index')) || 1;
+              // Add the thumb markup to the page.
+              rangeInput.thumb = $('<div class="slider-thumb">').prependTo(self.element);
+              // Store the initial val, incase we need to reset.
+              rangeInput.initialValue = $(this).val();
+              // Method to update the slider output text/position
+              rangeInput.update = function () {
+                if (DEBUG && console) console.log('RangeSlider rangeInput.update');
+                var range = $(this).attr('max') - $(this).attr('min'),
+                  offset = $(this).val() - $(this).attr('min'),
+                  pos = offset / range * 100 + '%',
+                  transPos = offset / range * -100 + '%',
+                  prefix = typeof self.config.output.prefix == 'function' ? self.config.output.prefix.call(self, rangeInput) : self.config.output.prefix,
+                  format = self.config.output.format($(rangeInput).val()),
+                  suffix = typeof self.config.output.suffix == 'function' ? self.config.output.suffix.call(self, rangeInput) : self.config.output.suffix;
+
+                // Update the HTML
+                $(rangeInput.output).html(prefix + '' + format + '' + suffix);
+                $(rangeInput.output).css('left', pos);
+                $(rangeInput.output).css('transform', 'translate(' + transPos + ',0)');
+
+                // Update the IE hack thumbs
+                $(rangeInput.thumb).css('left', pos);
+                $(rangeInput.thumb).css('transform', 'translate(' + transPos + ',0)');
+
+                // Adjust the track for the inputs
+                self.adjustTrack();
+              };
+
+              // Send the current ouput to the front for better stacking
+              rangeInput.sendOutputToFront = function () {
+                $(this.output).css('z-index', rangeInput.output.zindex + 1);
+              };
+
+              // Send the current ouput to the back behind the other
+              rangeInput.sendOutputToBack = function () {
+                $(this.output).css('z-index', rangeInput.output.zindex);
+              };
+
+              ///////////////////////////////////////////////////
+              // IE hack because pointer-events:none doesn't pass the 
+              // event to the slider thumb, so we have to make our own.
+              ///////////////////////////////////////////////////
+              $(rangeInput.thumb).on('mousedown', function (event) {
+                // Send all output to the back
+                self.sendAllOutputToBack();
+                // Send this output to the front
+                rangeInput.sendOutputToFront();
+                // Turn mouse tracking on
+                $(this).data('tracking', true);
+                $(document).one('mouseup', function () {
+                  // Turn mouse tracking off
+                  $(rangeInput.thumb).data('tracking', false);
+                  // Trigger the change event
+                  self.change(event);
+                });
+              });
+
+              // IE hack - track the mouse move within the input range
+              $('body').on('mousemove', function (event) {
+                // If we're tracking the mouse move
+                if ($(rangeInput.thumb).data('tracking')) {
+                  var rangeOffset = $(rangeInput).offset(),
+                    relX = event.pageX - rangeOffset.left,
+                    rangeWidth = $(rangeInput).width();
+                  // If the mouse move is within the input area
+                  // update the slider with the correct value
+                  if (relX <= rangeWidth) {
+                    var val = relX / rangeWidth;
+                    $(rangeInput).val(val * $(rangeInput).attr('max'));
+                    rangeInput.update();
+                  }
+                }
+              });
+
+              // Update the output text on slider change
+              $(this).on('mousedown input change touchstart', function (event) {
+                if (DEBUG && console) console.log('RangeSlider rangeInput, mousedown input touchstart');
+                // Send all output to the back
+                self.sendAllOutputToBack();
+                // Send this output to the front
+                rangeInput.sendOutputToFront();
+                // Update the output
+                rangeInput.update();
+              });
+
+              // Fire the onchange event 
+              $(this).on('mouseup touchend', function (event) {
+                if (DEBUG && console) console.log('RangeSlider rangeInput, change');
+                self.change(event);
+              });
+
+              // Add this input to the inputs array for use later
+              self.inputs.push(this);
+            });
+
+            // Reset to set to initial values
+            this.reset();
+
+            // Return the instance
+            return this;
+          },
+
+          sendAllOutputToBack: function () {
+            $.map(this.inputs, function (input, index) {
+              input.sendOutputToBack();
+            });
+          },
+
+          change: function (event) {
+            if (DEBUG && console) console.log('RangeSlider change', event);
+            // Get the values of each input
+            var values = $.map(this.inputs, function (input, index) {
+              return {
+                value: parseInt($(input).val()),
+                min: parseInt($(input).attr('min')),
+                max: parseInt($(input).attr('max'))
+              };
+            });
+
+            // Sort the array by value, if we have 2 or more sliders
+            values.sort(function (a, b) {
+              return a.value - b.value;
+            });
+
+            // call the on change function in the context of the rangeslider and pass the values
+            this.config.change.call(this, event, values);
+          },
+
+          reset: function () {
+            if (DEBUG && console) console.log('RangeSlider reset');
+            $.map(this.inputs, function (input, index) {
+              $(input).val(input.initialValue);
+              input.update();
+            });
+          },
+
+          adjustTrack: function () {
+            if (DEBUG && console) console.log('RangeSlider adjustTrack');
+            var valueMin = Infinity,
+              rangeMin = Infinity,
+              valueMax = 0,
+              rangeMax = 0;
+
+            // Loop through all input to get min and max
+            $.map(this.inputs, function (input, index) {
+              var val = parseInt($(input).val()),
+                min = parseInt($(input).attr('min')),
+                max = parseInt($(input).attr('max'));
+
+              // Get the min and max values of the inputs
+              valueMin = (val < valueMin) ? val : valueMin;
+              valueMax = (val > valueMax) ? val : valueMax;
+              // Get the min and max possible values
+              rangeMin = (min < rangeMin) ? min : rangeMin;
+              rangeMax = (max > rangeMax) ? max : rangeMax;
+            });
+
+            // Get the difference if there are 2 range input, use max for one input.
+            // Sets left to 0 for one input and adjust for 2 inputs
+            if (this.inputs.length > 1) {
+              this.trackIncluded.css('width', (valueMax - valueMin) / (rangeMax - rangeMin) * 100 + '%');
+              this.trackIncluded.css('left', (valueMin - rangeMin) / (rangeMax - rangeMin) * 100 + '%');
+            } else {
+              this.trackIncluded.css('width', valueMax / (rangeMax - rangeMin) * 100 + '%');
+              this.trackIncluded.css('left', '0%');
+            }
+          }
+        };
+
+        RangeSlider.defaults = RangeSlider.prototype.defaults;
+
+        $.fn.RangeSlider = function (options) {
+          if (DEBUG && console) console.log('$.fn.RangeSlider', options);
+          return this.each(function () {
+            var instance = $(this).data(PLUGIN_IDENTIFIER);
+            if (!instance) {
+              instance = new RangeSlider(this, options).init();
+              $(this).data(PLUGIN_IDENTIFIER, instance);
+            }
+          });
+        };
+
+      }
+      )(jQuery);
+
+
+      var rangeSlider = $('#facet-price-range-slider');
+      if (rangeSlider.length > 0) {
+        rangeSlider.RangeSlider({
+          output: {
+            format: function (output) {
+              return output.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+            },
+            suffix: function (input) {
+              return parseInt($(input).val()) == parseInt($(input).attr('max')) ? this.config.maxSymbol : '';
+            }
+          }
+        });
+      }
+
+    </script>
+
+    <script>
+      function getValue() {
+        var min = document.getElementById('minId').value;
+        var max = document.getElementById('maxId').value;
+        
+        $.ajax({
+          url: "/setrangeData",
+          method: "POST",
+          data: {
+            min: min,
+            max: max,
+            catId: '<%= catId %>',
+            subId: '<%= subId %>',
+            extraId: '<%= extraId %>'
+          },
+          success: (res) => {
+            $("#rangeData").html(res);
+          }
+        })
+      }
+    </script>
+
+    <!-- product listing set localstorage  -->
+    <script>
+      function getListStyle(type)
+      {
+        localStorage.setItem('proListStyle',type);
+      }
+
+      function getBrandData(id)
+      {
+        $.ajax({
+          url:'/getBrandData',
+          method:'POST',
+          data:{
+            brandId : id,
+            catId: '<%= catId %>',
+            subId: '<%= subId %>',
+            extraId: '<%= extraId %>'
+          },
+          success:(res)=>{
+            $('#rangeData').html(res);
+          }
+        })
+      }
+    </script>

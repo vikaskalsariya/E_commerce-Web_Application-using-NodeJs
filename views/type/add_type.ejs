@@ -1,0 +1,88 @@
+<%-  include("../admin/header") %>
+
+<main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Type</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/admin/dashboard">Home</a></li>
+          <li class="breadcrumb-item">Type Forms</li>
+          <li class="breadcrumb-item active">Add Type</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-12">
+
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Add Type form</h5>
+
+              <!-- General Form Elements -->
+              <form action="/admin/Type/add_TypeData" method="post" > 
+                
+                <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label">Category</label>
+                  <div class="col-sm-10">
+                    <select class="form-select" aria-label="Default select example" name="categoryId" id="categoryId" onchange="return getSubCatData()" >
+                      <option selected>- - - Select Category - - -</option>
+                      <% for(var Data of catData){ %>
+                      <option value="<%= Data.id %>"><%= Data.category %></option>
+                      <% } %>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label">Subcategory</label>
+                  <div class="col-sm-10">
+                    <select class="form-select" aria-label="Default select example" name="subcategoryId" id="subcategoryId"  onchange="return getExtraCatData()">
+                      <option selected>- - - Select Subcategory - - -</option>
+                      <% for(var Data of subcatData){ %>
+                      <option value="<%= Data.id %>"><%= Data.subcategory %></option>
+                      <% } %>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label">Extracbategory</label>
+                  <div class="col-sm-10">
+                    <select class="form-select" aria-label="Default select example" name="extracategoryId" id="extracategoryId">
+                      <option selected>- - - Select Extracbategory - - -</option>
+                      <% for(var Data of extracatData){ %>
+                      <option value="<%= Data.id %>"><%= Data.extracategory %></option>
+                      <% } %>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <label for="inputText" class="col-sm-2 col-form-label">Type name </label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" name="type" placeholder="Enter Type">
+                  </div>
+                </div>
+                
+                <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label">Submit Button</label>
+                  <div class="col-sm-10">
+                    <button type="submit" class="btn btn-primary">Submit Form</button>
+                  </div>
+                </div>
+
+              </form><!-- End General Form Elements -->
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+<%-  include("../admin/footer") %>

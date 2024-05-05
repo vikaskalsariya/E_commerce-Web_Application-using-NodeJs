@@ -1,0 +1,201 @@
+<%-  include("../admin/header") %>
+
+<main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Update Product</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/admin/dashboard">Home</a></li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-12">
+
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Update Product form</h5>
+
+              <!-- General Form Elements -->
+              <form action="/admin/Product/UpdatedData" method="post" enctype="multipart/form-data"> 
+                <input type="hidden" name="id" value="<%= ProdcutData.id %>">
+
+                   <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label">Category</label>
+                  <div class="col-sm-10">
+                    <select class="form-select" aria-label="Default select example" name="categoryId" id="categoryId" onchange="return getSubCatData()" >
+                      <option selected>- - - Select Category - - -</option>
+                      <% for(var Data of catData){ %>
+                      <option value="<%= Data.id %>" <%if(ProdcutData.categoryId == Data.id){%>selected<%}%> ><%= Data.category %></option>
+                      <% } %>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label">Subcategory</label>
+                  <div class="col-sm-10">
+                    <select class="form-select" aria-label="Default select example" name="subcategoryId" id="subcategoryId"  onchange="return getExtraCatData()">
+                      <option selected>- - - Select Subcategory - - -</option>
+                      <% for(var Data of subcatData){ %>
+                      <option value="<%= Data.id %>" <%if(ProdcutData.subcategoryId == Data.id){%>selected<%}%> ><%= Data.subcategory %></option>
+                      <% } %>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label">Extracbategory</label>
+                  <div class="col-sm-10">
+                    <select class="form-select" aria-label="Default select example" name="extracategoryId" id="extracategoryId" onchange="return getBrandType()">
+                      <option selected>- - - Select Extracbategory - - -</option>
+                      <% for(var Data of extracatData){ %>
+                      <option value="<%= Data.id %>" <%if(ProdcutData.extracategoryId == Data.id){%>selected<%}%> ><%= Data.extracategory %></option>
+                      <% } %>
+                    </select>
+                  </div>
+                </div>
+
+                <div id="Brandtype">
+                  <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label">Brand</label>
+                    <div class="col-sm-10">
+                      <select class="form-select" aria-label="Default select example" name="brandId" id="brandId">
+                        <option selected>- - - Select Brand - - -</option>
+                        <% for(var Data of brandData){ %>
+                        <option value="<%= Data.id %>" <%if(ProdcutData.brandId == Data.id){%>selected<%}%> ><%= Data.brand %></option>
+                        <% } %>
+                      </select>
+                    </div>
+                  </div>
+  
+                  <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label">Type</label>
+                    <div class="col-sm-10">
+                      <select class="form-select" aria-label="Default select example" name="typeId" id="typeId">
+                        <option selected>- - - Select Type - - -</option>
+                        <% for(var Data of typeData){ %>
+                        <option value="<%= Data.id %>" <%if(ProdcutData.typeId == Data.id){%>selected<%}%> ><%= Data.type %></option>
+                        <% } %>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <label for="inputText" class="col-sm-2 col-form-label">Product name </label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" name="name" placeholder="Enter product name" value="<%= ProdcutData.name %>">
+                  </div>
+                </div>
+                
+                <div class="row mb-3">
+                  <label for="inputText" class="col-sm-2 col-form-label">Product Price </label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" name="price" placeholder="Enter product price" value="<%= ProdcutData.price %>">
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <label for="inputText" class="col-sm-2 col-form-label">Product old price </label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" name="oldPrice" placeholder="Enter product old price" value="<%= ProdcutData.oldPrice %>">
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <legend class="col-form-label col-sm-2 pt-0">Select size</legend>
+                  <div class="col-sm-10">
+
+                      <input class="form-check-input" value="28" type="checkbox" name="size" id="gridCheck1" <%if(ProdcutData.size.includes('28')){%> checked <%}%> >
+                      <label class="form-check-label" for="gridCheck1">
+                        28
+                      </label>
+
+                      <input class="form-check-input" value="30" type="checkbox" name="size" id="gridCheck2" <%if(ProdcutData.size.includes('30')){%> checked <%}%>>
+                      <label class="form-check-label" for="gridCheck2">
+                        30
+                      </label>
+
+                      <input class="form-check-input" value="32" type="checkbox" name="size" id="gridCheck2" <%if(ProdcutData.size.includes('32')){%> checked <%}%>>
+                      <label class="form-check-label" for="gridCheck2">
+                        32
+                      </label>
+
+                      <input class="form-check-input" value="34" type="checkbox" name="size" id="gridCheck2" <%if(ProdcutData.size.includes('34')){%> checked <%}%>>
+                      <label class="form-check-label" for="gridCheck2">
+                        34
+                      </label>
+
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <legend class="col-form-label col-sm-2 pt-0">Select colors</legend>
+                  <div class="col-sm-10">
+                    
+                      <input class="form-check-input" value="Black" type="checkbox" name="color" id="gridCheck1" <%if(ProdcutData.color.includes('Black')){%> checked <%}%>>
+                      <label class="form-check-label" for="gridCheck1" style="color: black; font-weight: bold;">
+                        Black
+                      </label>
+
+                      <input class="form-check-input" value="Green" type="checkbox" name="color" id="gridCheck2" <%if(ProdcutData.color.includes('Green')){%> checked <%}%>>
+                      <label class="form-check-label" for="gridCheck2" style="color: green; font-weight: bold;">
+                        Green
+                      </label>
+
+                      <input class="form-check-input" value="Purple" type="checkbox" name="color" id="gridCheck2" <%if(ProdcutData.color.includes('Purple')){%> checked <%}%>>
+                      <label class="form-check-label" for="gridCheck2" style="color: purple; font-weight: bold;">
+                        Purple
+                      </label>
+
+                      <input class="form-check-input" value="Red" type="checkbox" name="color" id="gridCheck2" <%if(ProdcutData.color.includes('Red')){%> checked <%}%>>
+                      <label class="form-check-label" for="gridCheck2" style="color: red; font-weight: bold;">
+                        Red
+                      </label>
+
+                  </div>
+                </div>
+
+
+                <div class="row mb-3">
+                  <label for="inputNumber" class="col-sm-2 col-form-label">Select single Image</label>
+                  <div class="col-sm-10">
+                    <input class="form-control" type="file" id="formFile" name="singleProduct">
+                    <img src="<%= ProdcutData.singleProductImg %>" alt="" height="100px">
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <label for="inputNumber" class="col-sm-2 col-form-label">Select Multiple Image</label>
+                  <div class="col-sm-10">
+                    <input class="form-control" type="file" id="formFile" name="multiProduct" multiple>
+                    <% ProdcutData.multiProductImg.map((v,i)=>{ %>
+                      <img src="<%= v %>" alt="" height="100px">
+                    <% }) %>
+                  </div>
+                </div>
+
+
+                <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label">Submit Button</label>
+                  <div class="col-sm-10">
+                    <button type="submit" class="btn btn-primary">Submit Form</button>
+                  </div>
+                </div>
+
+              </form><!-- End General Form Elements -->
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+<%-  include("../admin/footer") %>

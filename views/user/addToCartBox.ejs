@@ -1,0 +1,28 @@
+<li>
+    <div class="cart-item product-summary">
+        <% for(var v of cartData){%>
+            <div class="row" style="margin-top: 15px;">
+                <div class="col-xs-4">
+                    <div class="image"> <a href="detail.html"><img src="<%= v.productId.singleProductImg %>" alt="" style="border-radius: 10px;"></a>
+                    </div>
+                </div>
+                <div class="col-xs-7">
+                    <h3 class="name"><a href="index8a95.html?page-detail"><%= v.productId.name.substr(1,20) %>...</a></h3>
+                    <div class="price">₹<%= v.productId.price %></div>
+                </div>
+                <div class="col-xs-1 action"> <a href="#"><i class="fa fa-trash"></i></a> </div>
+            </div>
+            <% } %>
+    </div>
+    <!-- /.cart-item -->
+    <div class="clearfix"></div>
+    <hr>
+    <div class="clearfix cart-total">
+        <div class="pull-right"> <span class="text">Sub Total :</span><span class='price'>₹<%= total %></span>
+        </div>
+        <div class="clearfix"></div>
+        <a href="/showMyCart" class="btn btn-upper btn-primary btn-block m-t-20">Show My Cart</a>
+    </div>
+    <!-- /.cart-total-->
+
+</li>
